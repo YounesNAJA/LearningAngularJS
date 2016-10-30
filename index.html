@@ -1,0 +1,105 @@
+<html ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+    <script>
+        $(document).ready(hideInfos);
+
+        var step1btn = $("#step1");
+        var step2btn = $("#step2");
+
+        function hideInfos() {
+            $("#info1, #info2").hide();
+        }
+    </script>
+    <script src="tool.js"></script>
+    <script src="https://code.angularjs.org/1.5.8/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.5.8/angular-messages.min.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                <a class="navbar-brand" contenteditable="true"><img height="20" alt="Brand" src="res\img\logo.png"></a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Contacts</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <a id="step1" class="btn btn-primary">Step 1</a>
+                    <a id="step2" class="btn btn-primary">Step 2</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" id="info1">
+                    <h1>Step 1</h1>
+                    <h4>Here is information about step 1</h4>
+                </div>
+                <div class="col-md-12" id="info2">
+                    <h1>Step 2</h1>
+                    <h4>Here is information about step 2</h4>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" ng-controller="mainController">
+                    <p>Hello world!</p>
+                    <form name="myForm">
+                        <label>
+                            * Enter text: *
+                            <input type="email" ng-model="field" name="myField" required maxlength="15" />
+                        </label>
+                        <div ng-messages="myForm.myField.$error" role="alert">
+                            <div ng-message="required">Please enter a value for this field.</div>
+                            <div ng-message="email">This field must be a valid email address.</div>
+                            <div ng-message="maxlength">This field can be at most 15 characters long.</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            var currentstep = 0;
+
+            $("#step1").click(function () {
+                $("#info2").hide();
+                $("#info1").show("slow");
+
+                currentstep = 1;
+                // alert(currentstep);
+            });
+
+            $("#step2").click(function () {
+                $("#info1").hide();
+                $("#info2").show("slow");
+
+                currentstep = 2;
+                // alert(currentstep);
+            });
+        </script>
+
+</body>
+
+</html>
