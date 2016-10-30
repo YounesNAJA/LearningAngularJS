@@ -1,4 +1,4 @@
 var myApp = angular.module('myApp', ['ngMessages']);
-myApp.controller('mainController', function ($scope) {
-    console.log($scope);
-});
+myApp.controller('mainController', ["$scope", function ($scope) {
+    $scope.name = "Younes";
+}]);
