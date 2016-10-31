@@ -5,6 +5,7 @@ myApp.controller('mainController', ["$scope", "$timeout", "$filter", "$log", fun
     $scope.lowerusername = function() {
         return $filter('lowercase')($scope.username);
     };
+    $scope.characters = 6;
     
     $timeout(function(){
         $scope.name = "NAJA";

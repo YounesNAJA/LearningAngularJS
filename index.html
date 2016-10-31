@@ -80,6 +80,10 @@
                     <hr />
                     <p>What's your Github username?</p>
                     <input type='text' ng-model="username" />
+                    <div ng-class="{ 'alert alert-warning': username.length < characters, 'alert alert-danger': username.length > characters}" ng-show="username.length !== characters">
+                        <p ng-show="username.length < characters">You have less than 6 characters.</p>
+                        <p ng-show="username.length > characters">You have more than 6 characters.</p>
+                    </div>
                     <hr />
                     <h1>Github.com/{{username}}</h1>
                     <h1>Github.com/{{lowerusername()}}</h1>
