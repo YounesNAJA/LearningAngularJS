@@ -20,6 +20,7 @@
     <script src="tool.js"></script>
     <script src="https://code.angularjs.org/1.5.8/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.5.8/angular-messages.min.js"></script>
+    <script src="https://code.angularjs.org/1.5.8/angular-route.min.js"></script>
     <script src="app.js"></script>
 </head>
 
@@ -64,7 +65,7 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-md-12" ng-controller="mainController">
+                <div class="col-md-12" ng-controller="baseController">
                     <p>Hello {{name}}!</p>
                     <form name="myForm">
                         <label>
@@ -87,7 +88,23 @@
                     <hr />
                     <h1>Github.com/{{username}}</h1>
                     <h1>Github.com/{{lowerusername()}}</h1>
+                    <!--
+                    <h2>Offers</h2>
+                    <p>{{ offers }}</p>
+-->
                 </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <p>
+                <a href="#/">Main</a>
+            </p>
+            <p>
+                <a href="#/second">Second</a>
+            </p>
+            <div class="row" ng-view>
+                {{ myVar }}
             </div>
         </div>
         <script>
