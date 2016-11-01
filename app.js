@@ -61,6 +61,11 @@ function ($scope, $log, myService) {
         $scope.$watch("name", function () {
             myService.name = $scope.name;
         });
+    
+        $scope.person = {
+            name: "Younes",
+            address: "5555"
+        }
 }]);
 
 myApp.controller('secondController', ["$scope", "$routeParams", "myService", "$log",
@@ -81,6 +86,9 @@ myApp.directive("searchResult", function(){
     return {
         restrict: "EACM",
         template: "<p>Directive.</p>",
-        replace: true
+        replace: true,
+        scope: {
+            personName: '@'
+        }
     }
 });
