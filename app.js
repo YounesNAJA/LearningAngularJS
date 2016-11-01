@@ -76,3 +76,11 @@ function ($scope, $routeParams, myService, $log) {
             myService.name = $scope.name;
         });
 }]);
+
+myApp.directive("searchResult", function(){
+    return {
+        restrict: "EACM",
+        template: "<p>Directive.</p>",
+        replace: true
+    }
+});
