@@ -10,6 +10,18 @@ myApp.config(function ($routeProvider) {
             templateUrl: "pages/second.html",
             controller: "secondController"
         })
+        .when("/second/:num", {
+            templateUrl: "pages/second.html",
+            controller: "secondController"
+        })
+});
+
+myApp.service('myService', function () {
+    var self = this;
+    this.name = "Younes";
+    this.nameLength = function () {
+        return this.name.length;
+    };
 });
 
 myApp.controller('baseController', ["$scope", "$timeout", "$filter", "$log", "$http", function ($scope, $timeout, $filter, $log, $http) {
@@ -39,10 +51,28 @@ myApp.controller('baseController', ["$scope", "$timeout", "$filter", "$log", "$h
         });
 }]);
 
-myApp.controller('mainController', ["$scope", function($scope){
-    $scope.myVar = "Main";
+myApp.controller('mainController', ["$scope", "$log", "myService",
+function ($scope, $log, myService) {
+        $scope.myVar = "Main";
+        $scope.name = myService.name;
+        $scope.nameL = myService.nameLength();
+        $log.log($scope.name + " " + $scope.nameL);
+
+        $scope.$watch("name", function () {
+            myService.name = $scope.name;
+        });
 }]);
 
-myApp.controller('secondController', ["$scope", function($scope){
-    $scope.myVar = "Second";
+myApp.controller('secondController', ["$scope", "$routeParams", "myService", "$log",
+function ($scope, $routeParams, myService, $log) {
+        $scope.myVar = "Second";
+        $scope.num = $routeParams.num || 1;
+
+        $scope.name = myService.name;
+        $scope.nameL = myService.nameLength();
+        $log.log($scope.name + " " + $scope.nameL);
+
+        $scope.$watch("name", function () {
+            myService.name = $scope.name;
+        });
 }]);
