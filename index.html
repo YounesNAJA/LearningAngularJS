@@ -88,32 +88,37 @@
                     <hr />
                     <h1>Github.com/{{username}}</h1>
                     <h1>Github.com/{{lowerusername()}}</h1>
-                    <!--
+                    
                     <h2>Offers</h2>
                     <p>{{ offers }}</p>
+
+                </div>
+<!--
+                <div class="col-md-12" ng-controller="mainController">
+                    
+                </div>
 -->
-                    <search-result></search-result>
-                    <p search-result></p>
-                    <p class="search-result" person-name="{{ person.name }}"></p>
-                    <!-- directive: search-result -->
+                
+                <!-- $routeProvider thing -->
+                <div class="container">
+                    <p>
+                        <a href="#/">Main</a>
+                    </p>
+                    <p>
+                        <a href="#/second">Second</a>
+                    </p>
+                    
+                    <!-- View for the $routeProvider thing (Main or Second .html file -->
+                    <div class="row" ng-view>
+                        <p>{{ myVar }}</p>
+                    </div>
                     
                 </div>
             </div>
         </div>
 
-        <div class="container">
-            <p>
-                <a href="#/">Main</a>
-            </p>
-            <p>
-                <a href="#/second">Second</a>
-            </p>
-            
-            <div class="row" ng-view>
-                <p>{{ myVar }}</p>
-            </div>
-        </div>
-        
+
+
         <script>
             var currentstep = 0;
 

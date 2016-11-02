@@ -1,21 +1,5 @@
 var myApp = angular.module('myApp', ['ngMessages', 'ngRoute']);
 
-myApp.config(function ($routeProvider) {
-    $routeProvider
-        .when("/", {
-            templateUrl: "pages/main.html",
-            controller: "mainController"
-        })
-        .when("/second", {
-            templateUrl: "pages/second.html",
-            controller: "secondController"
-        })
-        .when("/second/:num", {
-            templateUrl: "pages/second.html",
-            controller: "secondController"
-        })
-});
-
 myApp.service('myService', function () {
     var self = this;
     this.name = "Younes";
@@ -42,13 +26,13 @@ myApp.controller('baseController', ["$scope", "$timeout", "$filter", "$log", "$h
     });
 
 
-    $http.get("https://jsonplaceholder.typicode.com/users")
-        .success(function (result) {
-            $scope.offers = result;
-        })
-        .error(function (data, status) {
-            $log.debug(data);
-        });
+//    $http.get("https://jsonplaceholder.typicode.com/users")
+//     .success(function (result) {
+//         $scope.offers = result;
+//     })
+//     .error(function (data, status) {
+//         $log.debug(data);
+//     });
 }]);
 
 myApp.controller('mainController', ["$scope", "$log", "myService",
@@ -61,12 +45,44 @@ function ($scope, $log, myService) {
         $scope.$watch("name", function () {
             myService.name = $scope.name;
         });
-    
+
         $scope.person = {
             name: "Younes",
             address: "5555"
-        }
+        };
+    
+        $scope.myFunction = function(name){  
+            return "Hello " + name;
+        };
 }]);
+
+myApp.config(function ($routeProvider) {
+    $routeProvider
+        .when("/", {
+            templateUrl: "pages/main.html",
+            controller: "mainController"
+        })
+        .when("/second", {
+            templateUrl: "pages/second.html",
+            controller: "secondController"
+        })
+        .when("/second/:num", {
+            templateUrl: "pages/second.html",
+            controller: "secondController"
+        })
+});
+
+myApp.directive("searchResult", function () {
+    return {
+        restrict: "EACM",
+        templateUrl: "directives/searchResult.html",
+        replace: true,
+        scope: {
+            'personObject': "=",
+            'myFunction': '&'
+        }
+    }
+});
 
 myApp.controller('secondController', ["$scope", "$routeParams", "myService", "$log",
 function ($scope, $routeParams, myService, $log) {
@@ -81,14 +97,3 @@ function ($scope, $routeParams, myService, $log) {
             myService.name = $scope.name;
         });
 }]);
-
-myApp.directive("searchResult", function(){
-    return {
-        restrict: "EACM",
-        template: "<p>Directive.</p>",
-        replace: true,
-        scope: {
-            personName: '@'
-        }
-    }
-});
