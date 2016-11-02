@@ -26,13 +26,13 @@ myApp.controller('baseController', ["$scope", "$timeout", "$filter", "$log", "$h
     });
 
 
-//    $http.get("https://jsonplaceholder.typicode.com/users")
-//     .success(function (result) {
-//         $scope.offers = result;
-//     })
-//     .error(function (data, status) {
-//         $log.debug(data);
-//     });
+    //    $http.get("https://jsonplaceholder.typicode.com/users")
+    //     .success(function (result) {
+    //         $scope.offers = result;
+    //     })
+    //     .error(function (data, status) {
+    //         $log.debug(data);
+    //     });
 }]);
 
 myApp.controller('mainController', ["$scope", "$log", "myService",
@@ -46,12 +46,19 @@ function ($scope, $log, myService) {
             myService.name = $scope.name;
         });
 
-        $scope.person = {
-            name: "Younes",
-            address: "5555"
-        };
-    
-        $scope.myFunction = function(name){  
+        $scope.people = [
+            {
+                name: "Younes",
+                address: "5555"
+        }, {
+                name: "Jonah",
+                address: "4568"
+        }, {
+                name: "DJo",
+                address: "9781"
+        }];
+
+        $scope.myFunction = function (name) {
             return "Hello " + name;
         };
 }]);
