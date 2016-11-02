@@ -87,6 +87,21 @@ myApp.directive("searchResult", function () {
         scope: {
             'personObject': "=",
             'myFunction': '&'
+        },
+        compile: function(elem, attrs){
+            return {
+                post: function(scope, elements, attrs){
+                    if(scope.personObject.name == "Jonah"){
+                        elements.addClass("alert alert-danger");
+                    } else {
+                        elements.addClass("alert alert-info");
+                    }
+                }
+//                },
+//                pre: function(scope, elements, attrs){
+//                    
+//                }
+            }
         }
     }
 });
