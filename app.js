@@ -102,7 +102,8 @@ myApp.directive("searchResult", function () {
 //                    
 //                }
             }
-        }
+        },
+        transclude: true
     }
 });
 
